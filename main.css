@@ -1,0 +1,393 @@
+/*slider custom--------------------------------------------------------------------------*/
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+	outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */  
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 25px;
+  border-radius: 3px;
+  background: #367ebd;
+  cursor: pointer;
+  margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 25px;
+  border-radius: 3px;
+  background: #367ebd;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 25px;
+  border-radius: 3px;
+  background: #367ebd;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #ffffff;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #ffffff;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: ##ffffff;
+}
+input[type=range]::-ms-fill-upper {
+  background: ##ffffff;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #ffffff;
+}
+/*----------------------------Youtube----------------------------------*/
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.embed-responsive .embed-responsive-item,
+.embed-responsive iframe,
+.embed-responsive embed,
+.embed-responsive object,
+.embed-responsive video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+.embed-responsive-4by3 {
+  padding-bottom: 75%;
+}
+/*--------------------------------------------------------------------------*/
+
+body {
+	background-color:#111111;
+	margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+#submit{
+	float: right;
+  margin-right: 5px;
+}
+
+#messages {
+    padding-top: 15px;
+    height: 10px;
+}
+
+.demo-message {
+    display: none;
+    z-index:10000000;
+}
+
+#panel .grade_entry{
+	padding-bottom: 10px;
+}
+
+#panel{
+	position: absolute;
+	top: 100px;
+	left: 2%;
+	width: 96%;
+  padding: 10px;
+  background-color: #FFFFFF;
+  border: solid 1px #c3c3c3;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+#panel {
+    display: none;
+}
+
+
+#panel p {
+    text-indent: 50px;
+}
+
+#panel h3{
+	text-indent: 10px;
+}
+
+#panel span {
+	display: inline;
+	float:right;
+}
+
+#panel label{
+	display: inline;
+}
+
+#panel2 {
+  position: absolute;
+  top: 100px;
+  left: 2%;
+  width: 96%;
+  padding: 10px;
+  background-color: #FFFFFF;
+  border: solid 1px #c3c3c3;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+#panel2 h3{
+  text-indent: 10px;
+}
+
+#panel2 h6{
+  text-indent: 15px;
+}
+
+#panel3 {
+  position: absolute;
+  top: 100px;
+  left: 2%;
+  width: 96%;
+  padding: 10px;
+  background-color: #FFFFFF;
+  border: solid 1px #c3c3c3;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+#panel3 {
+    display: none;
+}
+
+
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+#instructions {
+    /*display: none;*/
+}
+
+.thumbnail {
+    cursor: pointer;
+    margin-bottom: 0px;
+}
+
+.starter-container {
+    cursor: pointer;
+    height: 141px;
+    background-size: 100% 100%;
+    background-color: #2f2f2f;
+    text-align: center;
+    border: 3px solid black;
+}
+
+#svg-wrapper {
+    margin-top: 15px;
+}
+
+#svg-container {
+    margin-top: 15px;
+}
+
+#svg-curve {
+    width: 720px;
+    height: 300px;
+}
+
+line.cursor {
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 1px;
+}
+
+line.cursor-wide {
+  cursor: pointer;
+}
+
+.draggable-rect {
+  fill: white;
+  fill-opacity: 0.0;
+  cursor: pointer;
+}
+
+text.time {
+    fill: #858585;
+}
+
+.buttons:active {
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+    position: relative;
+    top: 1px;
+}
+
+.buttons:before
+{
+    float: left;
+    width: 1em;
+    text-align: center;
+    font-size: 1.6em;
+    padding: 0.05em;
+    pointer-events: none;
+}
+
+.buttons:hover {
+    cursor: pointer;
+}
+
+
+.smiling-face:before
+{ content: "\1F603"; }
+.sad-face:before
+{ content: "\1F625"; }
+.fear-face:before
+{ content: "\1F628"; }
+.angry-face:before
+{content : "\1F620";}
+.contempt-face:before
+{content : "\1F60F";}
+.disgusted-face:before
+{content : "\1F601";}
+.surprise-face:before
+{content : "\1F62F";}
+
+.box-squared {
+    width: 110px;
+    height: 30px;
+    line-height: 28px;
+        display: inline-block;
+    margin: 0.5em;
+    text-decoration: none;
+    color: #333;
+    border-radius: .2em;
+    text-align: center;
+}
+
+.joy-box {
+    background: orangered;
+}
+.sad-box{
+    background: green;
+}
+.fear-box{
+    background: red;
+}
+.anger-box {
+    background: pink;
+}
+.contempt-box {
+    background: yellow;
+}
+.disgust-box {
+    background: deeppink;
+}
+.surprise-box {
+    background: purple;
+}
+
+
+
+
+/*----------------------------------D3----------------------------*/
+.graph .axis {
+    stroke-width: 1;
+}
+
+.graph .axis .tick line {
+    stroke: #777777;
+}
+
+.graph .axis .tick text {
+    fill: #777777;
+    font-size: 0.7em;
+}
+
+.graph .axis .domain {
+    fill: none;
+    stroke: #777777;
+}
+
+.graph .group {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5;
+}
