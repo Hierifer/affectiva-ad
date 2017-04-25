@@ -1,15 +1,32 @@
+var memory = [];
+var count = 0;
+var joy = 0;
+var sad = 0;
+var disgust = 0;
+var contempt = 0;
+var anger = 0;
+var fear = 0;
+var surprise = 0;
+var engagement = 0;
+var pvalence = 0;
+var nvalence = 0;
+
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
 /*-------------------------light animation---------------------------------------------*/
 function openlight(){
 	if(document.getElementById("light").alt == "light"){
-		document.getElementById("light").src = "lightoff.png";
+		document.getElementById("light").src = "src/lightoff.png";
 		document.body.style.backgroundColor = "#FFFFFF";
 		document.getElementById("light").alt = "lightoff";
 		document.getElementById("light").title="Close Light";
 	} else {
-		document.getElementById("light").src = "light.png";
+		document.getElementById("light").src = "src/light.png";
 		document.body.style.backgroundColor = "#111111";
 		document.getElementById("light").alt = "light";	
-		document.getElementById("light").title="Open Light";	
+		document.getElementById("light").title="Open Light";
 	}
 }
 
@@ -85,8 +102,11 @@ $(document).ready(function(){
         if ($('#panel').is(':visible')){
         	$("#panel").slideUp("slow");
         	document.getElementById("grade").innerHTML="Survey It";
+          $(".demo-message").hide();
+          document.forms["questionaire"]["data"].value = memory;
 		} else {
 			$("#panel").slideDown("slow");
+      $(".demo-message").hide();
 			document.getElementById("grade").innerHTML="Roll Up";
 		}
     });
@@ -96,10 +116,10 @@ $(document).ready(function(){
     $("#camera").click(function(){
         if ($('#panel2').is(':visible')){
         	$("#panel2").slideUp("slow");
-        	document.getElementById("camera").src="camera.png";
+        	document.getElementById("camera").src="src/camera.png";
 		} else {
 			$("#panel2").slideDown("slow");
-			document.getElementById("camera").src="camera_o.png";
+			document.getElementById("camera").src="src/camera_o.png";
 		}
     });
 });
@@ -116,10 +136,6 @@ $(document).ready(function(){
     });
 });
 
-/*--------------------------------------data REST ------------------------------------------------*/
-function submit(){
-
-}
 /*----------------------------------------resize--------------------------------------------------*/
 function resize(){
     var w = window.outerWidth;
@@ -136,32 +152,61 @@ $(document).ready(function(){
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	var player;
+  document.getElementById("yplayer").src = "https://www.youtube.com/embed/"+getParameterByName("vid")+"?enablejsapi=1";
 /*--------------------------------------------d3 init --------------------------------------------*/
 	var limit = 60 * 1,
         duration = 750,
         now = new Date(Date.now() - duration)
 
-    var width = window.innerWidth*1,
-        height = window.innerWidth*1*0.5
+    var width = 600,
+        height = 300
 
     var groups = {
-        current: {
+        joy: {
             value: 0,
             color: 'orange',
             data: d3.range(limit).map(function() {
                 return 0
             })
         },
-        target: {
+        sadness: {
+            value: 0,
+            color: 'blue',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        disgust: {
             value: 0,
             color: 'green',
             data: d3.range(limit).map(function() {
                 return 0
             })
         },
-        output: {
+        contempt: {
             value: 0,
-            color: 'grey',
+            color: 'yellow',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        anger: {
+            value: 0,
+            color: 'red',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        fear: {
+            value: 0,
+            color: 'deeppink',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        surprise: {
+            value: 0,
+            color: 'purple',
             data: d3.range(limit).map(function() {
                 return 0
             })
@@ -170,11 +215,11 @@ $(document).ready(function(){
 
     var x = d3.time.scale()
         .domain([now - (limit - 2), now - duration])
-        .range([0, width])
+        .range([24, width])
 
     var y = d3.scale.linear()
         .domain([0, 100])
-        .range([height, 0])
+        .range([height, 10])
 
     var line = d3.svg.line()
         .interpolate('basis')
@@ -188,7 +233,7 @@ $(document).ready(function(){
     var svg = d3.select('.graph').append('svg')
         .attr('class', 'chart')
         .attr('width', width)
-        .attr('height', height + 100)
+        .attr('height', height+100)
 
     var axis = svg.append('g')
         .attr('class', 'x axis')
@@ -220,7 +265,7 @@ $(document).ready(function(){
   var face_visible = true;
   var capture_frames = true;
   var frames_since_last_face = 0;
-  var memory = [];
+
   document.getElementById("camera").style.margin = "auto";
 
   var faceMode = affdex.FaceDetectorMode.LARGE_FACES;
@@ -239,11 +284,13 @@ $(document).ready(function(){
 	//Display canvas instead of video feed because we want to draw the feature points on it
 	$("#face_video_canvas").css("display", "block");
 	$("#face_video").css("display", "none");
+      Player_play();
   });
 
   //Add a callback to notify when camera access is allowed
   detector.addEventListener("onWebcamConnectSuccess", function() {
-    show_message("msg-starting-webcam");
+    show_message("msg-starting-record");
+    Player_play();
   });
 
   //Add a callback to notify when camera access is denied
@@ -287,16 +334,41 @@ $(document).ready(function(){
       		}));
       		log('#results', "Emoji: " + faces[0].emojis.dominantEmoji);
       		drawFeaturePoints(image, faces[0].featurePoints);
-              //d3 add entry
+          //d3 add entry
           now = new Date()
 
-          var group = groups["current"]
-          group.data.push(faces[0].emotions.joy) // Real values arrive at irregular intervals
-          group.path.attr('d', line)
+          count++;
+          //memory.push(count);
 
-          memory.push(Math.round(faces[0].emotions.joy))
+          if(faces[0].emotions["valence"] <0){
+            nvalence++;
+          } else {
+            pvalence++;
+          }
 
-          document.getElementById("memory").innerHTML = memory;
+          if(faces[0].emotions["engagement"] >= 30){
+            engagement++;
+          }
+
+          memory.push(Math.floor(timestamp/3600)+":"+Math.floor(timestamp%3600/60)+":"+(timestamp%60).toFixed(3));
+
+          for (var name in groups) {
+              var group = groups[name]
+              //group.data.push(group.value) // Real values arrive at irregular intervals
+              group.data.push(faces[0].emotions[name])
+              group.path.attr('d', line)
+
+              if(faces[0].emotions[name] > 60){
+                threshold(name);                
+              }
+
+              memory.push((faces[0].emotions[name]+0.001).toFixed(3));
+          }
+
+          memory.push("c"+count);
+
+          document.getElementById("count").innerHTML = count;
+          //document.getElementById("memory").innerHTML = memory;
 
           // Shift domain
           x.domain([now - (limit - 2) * duration, now - duration])
@@ -325,7 +397,8 @@ $(document).ready(function(){
       }
     }
 
-    });
+  });
+
 
   //Draw the detected facial feature points on the image
   function drawFeaturePoints(img, featurePoints) {
@@ -347,6 +420,55 @@ $(document).ready(function(){
 	onStart();
 
 });
+
+function threshold(name){
+  if(name == "joy"){
+    joy++;
+  } else if(name == "sadness"){
+    sad++;
+  } else if(name == "fear"){
+    fear++;
+  } else if(name == "anger"){
+    anger++;
+  } else if(name == "disgust"){
+    disgust++;
+  } else if(name == "contempt"){
+    contempt++;
+  } else if(name == "surprise"){
+    surprise++;
+  } else {
+    console.log("threshold error");
+  }
+}
+
+
+
+/*--------------------------------------data REST ------------------------------------------------*/
+function check(){
+    //var r = confirm("Do you confirm your answer? REMIND: it will redirect to the result page!");
+
+    /*if(r == true){
+      alert("Thank you for your participation!");
+    }*/
+    //var memory =  document.getElementById("memory").innerHTML;
+    alert(memory);
+    document.forms["questionaire"]["joy"].value = joy;
+    document.forms["questionaire"]["sad"].value = sad;
+    document.forms["questionaire"]["disgust"].value = disgust;
+    document.forms["questionaire"]["contempt"].value = contempt;
+    document.forms["questionaire"]["anger"].value = anger;
+    document.forms["questionaire"]["fear"].value = fear;
+    document.forms["questionaire"]["surprise"].value = surprise;
+    document.forms["questionaire"]["engagement"].value = engagement;
+    document.forms["questionaire"]["count"].value = count;
+    document.forms["questionaire"]["pvalence"].value = pvalence;
+    document.forms["questionaire"]["nvalence"].value = nvalence;
+    document.forms["questionaire"]["data"].value = memory;
+    document.forms["questionaire"]["vid"].value = getParameterByName("vid");
+
+    document.getElementById("submit").disabled = false;
+    document.getElementById("submit").style.color = "rgb(0,0,0)";
+}
 
 
 function log(node_name, msg) {
@@ -385,7 +507,7 @@ function onReset() {
 
 
 function onYouTubeIframeAPIReady() {
-	player = new YT.Player('existing-iframe-example', {
+	player = new YT.Player('yplayer', {
 	    events: {
 	      'onReady': onPlayerReady,
 	      'onStateChange': onPlayerStateChange
@@ -394,7 +516,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-	document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
+	document.getElementById('yplayer').style.borderColor = '#FF6D00';
 }
 
 function changeBorderColor(playerStatus) {
@@ -415,96 +537,41 @@ function changeBorderColor(playerStatus) {
 	  color = "#FF6DOO"; // video cued = orange
 	}
 	if (color) {
-	  document.getElementById('existing-iframe-example').style.borderColor = color;
+	  document.getElementById('yplayer').style.borderColor = color;
 	}
 }
 
 function onPlayerStateChange(event) {
-	changeBorderColor(event.data);
+	 changeBorderColor(event.data);
 }
 
+function Player_play(){
+  $(".demo-message").hide();
+  player.playVideo();
+}
+
+
 /*-----------------------------------d3-----------------------------------------------*/
-var add_cursor = function() {
-        // drag and drop
-        var curve = d3.select("#svg-curve");
-        var drag_group = curve.append("svg:g").attr("y1", 0).attr("y2", 250).attr("x1", 0).attr("x2", 10).attr("class", "draggable-group");
-        drag_group.append("svg:rect").attr("x", -5).attr("y", 0).attr("width", 10).attr("height", 250).attr("class", "draggable-rect");
-        drag_group.append("svg:line").attr("class", "cursor cursor-wide").attr("y1", 0).attr("y2", 250).attr("x1", 0).attr("x2", 0);
 
-        drag_group.call(d3.behavior.drag().on("drag", function() {
-            var x_coord = d3.event.x;
-            var playback_time = t.invert(x_coord);
-            
-            if (playback_time < 0) {
-                x_coord = 0;
-                playback_time = 0;
-            } else if (playback_time >= video_cutoff_sec) {
-                playback_time = video_cutoff_sec - 0.001;
-                x_coord = t(playback_time);
-            }
-            
-            translate_cursor(x_coord);
-            player.seekTo(playback_time);
-            
-        }).on("dragstart", function(event) {
-            if (playing) {
-                clearInterval(cursor_interval);
-            }
-            $("html, .draggable-rect, line.cursor-wide").css({"cursor": "-webkit-grabbing"});
-            $("html, .draggable-rect, line.cursor-wide").css({"cursor": "-moz-grabbing"});
-            $("html, .draggable-rect, line.cursor-wide").css({"cursor": "grabbing"});
-        }).on("dragend", function() {
-            if (playing) {
-                track_video();
-            }
-            $("html").css({"cursor": "default"});
-            $(".draggable-rect, line.cursor-wide").css("cursor", "pointer");
-        }));
+var create_alert = function(id, text) {
+    $("#lightbox").fadeIn(500);
+    $("<div></div>", {
+        id: id,
+        class: "alert alert-danger",
+        display: "none",
+        text: text,
+    }).appendTo("#lightbox");
+    $("#" + id).css({"text-align": "center", "z-index": 2});
+    $("#" + id).fadeIn(1000);
+};
 
-        curve.append("svg:text").attr("class", "time video_current_time").attr("y", 20).attr("x", 5).text("0:00");
-        curve.on("click", svg_click);
-    };
+var show_message = function(id) {
+    $(".demo-message").hide();
+    $(document.getElementById(id)).fadeIn("fast");
+};
 
-    var svg_click = function() {
-        var x_click = d3.mouse(this)[0];
-        var playback_time = t.invert(x_click);
-        
-        if (playback_time >= video_cutoff_sec) {
-            playback_time = video_cutoff_sec - 0.001;
-            x_click = t(playback_time);
-        }
-        
-        if (playing) {
-            clearInterval(cursor_interval);
-        }
-        
-        translate_cursor(x_click);
-        player.seekTo(playback_time);
-        
-        if (playing) {
-            track_video();
-        }
-    };
-
-    var create_alert = function(id, text) {
-        $("#lightbox").fadeIn(500);
-        $("<div></div>", {
-            id: id,
-            class: "alert alert-danger",
-            display: "none",
-            text: text,
-        }).appendTo("#lightbox");
-        $("#" + id).css({"text-align": "center", "z-index": 2});
-        $("#" + id).fadeIn(1000);
-    };
-    
-    var show_message = function(id) {
-        $(".demo-message").hide();
-        $(document.getElementById(id)).fadeIn("fast");
-    };
-    
-    var fade_and_remove = function(id) {
-        $(id).fadeOut(500, function() {
-            this.remove();
-        });
-    };
+var fade_and_remove = function(id) {
+    $(id).fadeOut(500, function() {
+        this.remove();
+    });
+};

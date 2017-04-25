@@ -1,1 +1,0 @@
-# affectiva-ad
