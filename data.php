@@ -6,7 +6,11 @@
   if(isset($_SESSION["user"])){
   	$username = $_SESSION["user"];
   } else{
+<<<<<<< HEAD
     header('Location: signin.html?err=not_login');      
+=======
+    header('Location: /dashboard/new/signin.html?err=not_login');      
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
   }
 
 /*----------------------------Variable-----------------------------------------*/
@@ -29,6 +33,12 @@
 		$q1 = $_POST["like"];
 		$q2 = $_POST["buy"];
 		$q3 = $_POST["emotion"];
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
 /*------------------------------write on file--------------------------------------------------------*/
 
 		$myfile = fopen("userdata/".$username."_".$vid.".tsv", "w") or die("Unable to open file!");
@@ -99,6 +109,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<<<<<<< HEAD
 <script> 
 $(document).ready(function(){
     $("#flip").click(function(){
@@ -132,6 +143,11 @@ $(document).ready(function(){
 		<iframe src=<?php echo $donut_url; ?> height="350" width="510" style="border:none;display:block; margin:auto;"></iframe>
 		<p style="text-align: center;">(* emotions are beyond 40% on the standard of Affectiva)</p>
 	</div>
+=======
+<body>
+	<div class="row">
+	<div class="col-sm-7" style="padding-right: 10px"><iframe src=<?php echo $donut_url; ?> height="350" width="510" style="border:none;display:block; margin:auto;"></iframe></div>
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
 	<div class="col-sm-5">
 		<h3 id="title"></h3>
 		<br>
@@ -145,6 +161,7 @@ $(document).ready(function(){
 	<div class="col-md-12 text-center" id="Lövheim"><h3>Lövheim Collage</h3>
 	<br>
 	<p>~ Emotion color each tile by lövheim cube of emotion ~</p>
+<<<<<<< HEAD
 	<div id="flip"><p id="desc">>> See more Description for lövheim cube <<</p></div>
 	<div id="panel">
 		<div style="width:100%;">
@@ -154,6 +171,11 @@ $(document).ready(function(){
 	<br>
 	<div id ="collage" style="display:block;">
 	<?php
+=======
+	<br>
+	<?php
+
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
 	function pick_color($data){
 		$red = 40+2*(ceil($data[1])+ceil($data[5])+ceil($data[7]));
 		$green = 40+2*(ceil($data[2])+ceil($data[3])+ceil($data[4])+ceil($data[7]));

@@ -11,32 +11,48 @@ var engagement = 0;
 var pvalence = 0;
 var nvalence = 0;
 
-var threshold_e = 40;
 
-function getParameterByName(name) {
-    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+function check(){
+    //var r = confirm("Do you confirm your answer? REMIND: it will redirect to the result page!");
+
+    /*if(r == true){
+      alert("Thank you for your participation!");
+    }*/
+    //var memory =  document.getElementById("memory").innerHTML;
+    alert(memory);
+    document.forms["questionaire"]["joy"].value = joy;
+    document.forms["questionaire"]["sad"].value = sad;
+    document.forms["questionaire"]["disgust"].value = disgust;
+    document.forms["questionaire"]["contempt"].value = contempt;
+    document.forms["questionaire"]["anger"].value = anger;
+    document.forms["questionaire"]["fear"].value = fear;
+    document.forms["questionaire"]["surprise"].value = surprise;
+    document.forms["questionaire"]["engagement"].value = engagement;
+    document.forms["questionaire"]["count"].value = count;
+    document.forms["questionaire"]["pvalence"].value = pvalence;
+    document.forms["questionaire"]["nvalence"].value = nvalence;
+    document.forms["questionaire"]["data"].value = memory;
+
+    document.getElementById("submit").disabled = false;
+    document.getElementById("submit").style.color = "rgb(0,0,0)";
 }
-/*
-  light event
-*/
+
+/*-------------------------light animation---------------------------------------------*/
 function openlight(){
 	if(document.getElementById("light").alt == "light"){
-		document.getElementById("light").src = "src/lightoff.png";
+		document.getElementById("light").src = "lightoff.png";
 		document.body.style.backgroundColor = "#FFFFFF";
 		document.getElementById("light").alt = "lightoff";
 		document.getElementById("light").title="Close Light";
 	} else {
-		document.getElementById("light").src = "src/light.png";
+		document.getElementById("light").src = "light.png";
 		document.body.style.backgroundColor = "#111111";
 		document.getElementById("light").alt = "light";	
 		document.getElementById("light").title="Open Light";
 	}
 }
 
-/*
-  survey events
-*/
+/*-------------------Survey Slide------------------------------------------------------*/
 function displaylike(){
 	var input = document.getElementById("rangelike").value;
 	if (input == 0){
@@ -101,51 +117,55 @@ function displayemo(){
 	}
 }
 
-/*
-  perpared function
-*/
-function resize(){
-    var w = window.outerWidth;
-    var h = window.outerHeight;
-}
 
-/*
-  survey slide
-*/
+/*---------------------------slide animation -------------------------------------------------------*/
 $(document).ready(function(){
     $("#flip").click(function(){
         if ($('#panel').is(':visible')){
         	$("#panel").slideUp("slow");
         	document.getElementById("grade").innerHTML="Survey It";
-          $(".demo-message").hide();F
+          $(".demo-message").hide();
           document.forms["questionaire"]["data"].value = memory;
 		} else {
 			$("#panel").slideDown("slow");
-      $(".demo-message").hide();
 			document.getElementById("grade").innerHTML="Roll Up";
 		}
     });
 });
 
-/*
-  camera slide
-*/
 $(document).ready(function(){
     $("#camera").click(function(){
         if ($('#panel2').is(':visible')){
         	$("#panel2").slideUp("slow");
-        	document.getElementById("camera").src="src/camera.png";
+        	document.getElementById("camera").src="camera.png";
 		} else {
 			$("#panel2").slideDown("slow");
-			document.getElementById("camera").src="src/camera_o.png";
+			document.getElementById("camera").src="camera_o.png";
 		}
     });
 });
 
+$(document).ready(function(){
+    $("#youtube").click(function(){
+        if ($('#panel3').is(':visible')){
+        	$("#panel3").slideUp("slow");
+        	document.getElementById("youtube").src="youtube.png";
+		} else {
+			$("#panel3").slideDown("slow");
+			document.getElementById("youtube").src="youtube.png";
+		}
+    });
+});
+
+/*----------------------------------------resize--------------------------------------------------*/
+function resize(){
+    var w = window.outerWidth;
+    var h = window.outerHeight;
+}
 /*-------------------------------------init-------------------------------------------------------*/
 $(document).ready(function(){
 
-  /*----youtube----*/
+/*-------------------------------------------youtube init ----------------------------------------*/
 	var tag = document.createElement('script');
 	tag.id = 'iframe-demo';
 	tag.src = 'https://www.youtube.com/iframe_api';
@@ -153,8 +173,7 @@ $(document).ready(function(){
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	var player;
-  document.getElementById("yplayer").src = "https://www.youtube.com/embed/"+getParameterByName("vid")+"?enablejsapi=1";
-/*----d3 init ----*/
+/*--------------------------------------------d3 init --------------------------------------------*/
 	var limit = 60 * 1,
         duration = 750,
         now = new Date(Date.now() - duration)
@@ -172,14 +191,28 @@ $(document).ready(function(){
         },
         sadness: {
             value: 0,
-            color: 'blue',
+            color: 'green',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        fear: {
+            value: 0,
+            color: 'red',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        anger: {
+            value: 0,
+            color: 'pink',
             data: d3.range(limit).map(function() {
                 return 0
             })
         },
         disgust: {
             value: 0,
-            color: 'green',
+            color: 'deeppink',
             data: d3.range(limit).map(function() {
                 return 0
             })
@@ -187,20 +220,6 @@ $(document).ready(function(){
         contempt: {
             value: 0,
             color: 'yellow',
-            data: d3.range(limit).map(function() {
-                return 0
-            })
-        },
-        anger: {
-            value: 0,
-            color: 'red',
-            data: d3.range(limit).map(function() {
-                return 0
-            })
-        },
-        fear: {
-            value: 0,
-            color: 'deeppink',
             data: d3.range(limit).map(function() {
                 return 0
             })
@@ -257,7 +276,7 @@ $(document).ready(function(){
     }
 
 
-  /*--------Affectiva init------------*/
+  /*----------------------------------------Affectiva init-------------------------------*/
   // SDK Needs to create video and canvas nodes in the DOM in order to function
   // Here we are adding those nodes a predefined div.
   var divRoot = $("#affdex_elements")[0];
@@ -296,7 +315,7 @@ $(document).ready(function(){
 
   //Add a callback to notify when camera access is denied
   detector.addEventListener("onWebcamConnectFailure", function() {
-    show_message("msg-starting-webcam");
+    show_message("msg-webcam-failure");
   });
 
   //Add a callback to notify when detector is stopped
@@ -341,13 +360,13 @@ $(document).ready(function(){
           count++;
           //memory.push(count);
 
-          if(faces[0].emotions["valence"] < 0){
+          if(faces[0].emotions["valence"] <0){
             nvalence++;
-          } else if(faces[0].emotions["valence"] > 0){
+          } else {
             pvalence++;
           }
 
-          if(faces[0].emotions["engagement"] > 0){
+          if(faces[0].emotions["engagement"] >= 30){
             engagement++;
           }
 
@@ -359,7 +378,7 @@ $(document).ready(function(){
               group.data.push(faces[0].emotions[name])
               group.path.attr('d', line)
 
-              if(faces[0].emotions[name] > threshold_e){
+              if(faces[0].emotions[name] > 60){
                 threshold(name);                
               }
 
@@ -397,6 +416,7 @@ $(document).ready(function(){
           frames_since_last_face++;       
       }
     }
+
   });
 
 
@@ -418,6 +438,7 @@ $(document).ready(function(){
   	}
   }
 	onStart();
+
 });
 
 function threshold(name){
@@ -443,30 +464,6 @@ function threshold(name){
 
 
 /*--------------------------------------data REST ------------------------------------------------*/
-function check(){
-    //var r = confirm("Do you confirm your answer? REMIND: it will redirect to the result page!");
-    /*if(r == true){
-      alert("Thank you for your participation!");
-    }*/
-    //var memory =  document.getElementById("memory").innerHTML;
-    alert(memory);
-    document.forms["questionaire"]["joy"].value = joy;
-    document.forms["questionaire"]["sad"].value = sad;
-    document.forms["questionaire"]["disgust"].value = disgust;
-    document.forms["questionaire"]["contempt"].value = contempt;
-    document.forms["questionaire"]["anger"].value = anger;
-    document.forms["questionaire"]["fear"].value = fear;
-    document.forms["questionaire"]["surprise"].value = surprise;
-    document.forms["questionaire"]["engagement"].value = engagement;
-    document.forms["questionaire"]["count"].value = count;
-    document.forms["questionaire"]["pvalence"].value = pvalence;
-    document.forms["questionaire"]["nvalence"].value = nvalence;
-    document.forms["questionaire"]["data"].value = memory;
-    document.forms["questionaire"]["vid"].value = getParameterByName("vid");
-    document.getElementById("submit").disabled = false;
-    document.getElementById("submit").style.color = "rgb(0,0,0)";
-}
-
 
 function log(node_name, msg) {
   $(node_name).append("<span>" + msg + "</span><br />")
@@ -549,6 +546,67 @@ function Player_play(){
 
 
 /*-----------------------------------d3-----------------------------------------------*/
+var add_cursor = function() {
+    // drag and drop
+    var curve = d3.select("#svg-curve");
+    var drag_group = curve.append("svg:g").attr("y1", 0).attr("y2", 250).attr("x1", 0).attr("x2", 10).attr("class", "draggable-group");
+    drag_group.append("svg:rect").attr("x", -5).attr("y", 0).attr("width", 10).attr("height", 250).attr("class", "draggable-rect");
+    drag_group.append("svg:line").attr("class", "cursor cursor-wide").attr("y1", 0).attr("y2", 250).attr("x1", 0).attr("x2", 0);
+
+    drag_group.call(d3.behavior.drag().on("drag", function() {
+        var x_coord = d3.event.x;
+        var playback_time = t.invert(x_coord);
+        
+        if (playback_time < 0) {
+            x_coord = 0;
+            playback_time = 0;
+        } else if (playback_time >= video_cutoff_sec) {
+            playback_time = video_cutoff_sec - 0.001;
+            x_coord = t(playback_time);
+        }
+        
+        translate_cursor(x_coord);
+        player.seekTo(playback_time);
+        
+    }).on("dragstart", function(event) {
+        if (playing) {
+            clearInterval(cursor_interval);
+        }
+        $("html, .draggable-rect, line.cursor-wide").css({"cursor": "-webkit-grabbing"});
+        $("html, .draggable-rect, line.cursor-wide").css({"cursor": "-moz-grabbing"});
+        $("html, .draggable-rect, line.cursor-wide").css({"cursor": "grabbing"});
+    }).on("dragend", function() {
+        if (playing) {
+            track_video();
+        }
+        $("html").css({"cursor": "default"});
+        $(".draggable-rect, line.cursor-wide").css("cursor", "pointer");
+    }));
+
+    curve.append("svg:text").attr("class", "time video_current_time").attr("y", 20).attr("x", 5).text("0:00");
+    curve.on("click", svg_click);
+};
+
+var svg_click = function() {
+    var x_click = d3.mouse(this)[0];
+    var playback_time = t.invert(x_click);
+    
+    if (playback_time >= video_cutoff_sec) {
+        playback_time = video_cutoff_sec - 0.001;
+        x_click = t(playback_time);
+    }
+    
+    if (playing) {
+        clearInterval(cursor_interval);
+    }
+    
+    translate_cursor(x_click);
+    player.seekTo(playback_time);
+    
+    if (playing) {
+        track_video();
+    }
+};
 
 var create_alert = function(id, text) {
     $("#lightbox").fadeIn(500);

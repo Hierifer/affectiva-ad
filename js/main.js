@@ -11,15 +11,22 @@ var engagement = 0;
 var pvalence = 0;
 var nvalence = 0;
 
+<<<<<<< HEAD:js/main.js
 var threshold_e = 40;
 
+=======
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
 function getParameterByName(name) {
     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
+<<<<<<< HEAD:js/main.js
 /*
   light event
 */
+=======
+/*-------------------------light animation---------------------------------------------*/
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
 function openlight(){
 	if(document.getElementById("light").alt == "light"){
 		document.getElementById("light").src = "src/lightoff.png";
@@ -117,7 +124,11 @@ $(document).ready(function(){
         if ($('#panel').is(':visible')){
         	$("#panel").slideUp("slow");
         	document.getElementById("grade").innerHTML="Survey It";
+<<<<<<< HEAD:js/main.js
           $(".demo-message").hide();F
+=======
+          $(".demo-message").hide();
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
           document.forms["questionaire"]["data"].value = memory;
 		} else {
 			$("#panel").slideDown("slow");
@@ -138,10 +149,33 @@ $(document).ready(function(){
 		} else {
 			$("#panel2").slideDown("slow");
 			document.getElementById("camera").src="src/camera_o.png";
+<<<<<<< HEAD:js/main.js
+=======
 		}
     });
 });
 
+$(document).ready(function(){
+    $("#youtube").click(function(){
+        if ($('#panel3').is(':visible')){
+        	$("#panel3").slideUp("slow");
+        	document.getElementById("youtube").src="youtube.png";
+		} else {
+			$("#panel3").slideDown("slow");
+			document.getElementById("youtube").src="youtube.png";
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
+		}
+    });
+});
+
+<<<<<<< HEAD:js/main.js
+=======
+/*----------------------------------------resize--------------------------------------------------*/
+function resize(){
+    var w = window.outerWidth;
+    var h = window.outerHeight;
+}
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
 /*-------------------------------------init-------------------------------------------------------*/
 $(document).ready(function(){
 
@@ -154,7 +188,11 @@ $(document).ready(function(){
 
 	var player;
   document.getElementById("yplayer").src = "https://www.youtube.com/embed/"+getParameterByName("vid")+"?enablejsapi=1";
+<<<<<<< HEAD:js/main.js
 /*----d3 init ----*/
+=======
+/*--------------------------------------------d3 init --------------------------------------------*/
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
 	var limit = 60 * 1,
         duration = 750,
         now = new Date(Date.now() - duration)
@@ -192,6 +230,7 @@ $(document).ready(function(){
             })
         },
         anger: {
+<<<<<<< HEAD:js/main.js
             value: 0,
             color: 'red',
             data: d3.range(limit).map(function() {
@@ -207,6 +246,23 @@ $(document).ready(function(){
         },
         surprise: {
             value: 0,
+=======
+            value: 0,
+            color: 'red',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        fear: {
+            value: 0,
+            color: 'deeppink',
+            data: d3.range(limit).map(function() {
+                return 0
+            })
+        },
+        surprise: {
+            value: 0,
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
             color: 'purple',
             data: d3.range(limit).map(function() {
                 return 0
@@ -341,6 +397,7 @@ $(document).ready(function(){
           count++;
           //memory.push(count);
 
+<<<<<<< HEAD:js/main.js
           if(faces[0].emotions["valence"] < 0){
             nvalence++;
           } else if(faces[0].emotions["valence"] > 0){
@@ -360,6 +417,27 @@ $(document).ready(function(){
               group.path.attr('d', line)
 
               if(faces[0].emotions[name] > threshold_e){
+=======
+          if(faces[0].emotions["valence"] <0){
+            nvalence++;
+          } else {
+            pvalence++;
+          }
+
+          if(faces[0].emotions["engagement"] >= 30){
+            engagement++;
+          }
+
+          memory.push(Math.floor(timestamp/3600)+":"+Math.floor(timestamp%3600/60)+":"+(timestamp%60).toFixed(3));
+
+          for (var name in groups) {
+              var group = groups[name]
+              //group.data.push(group.value) // Real values arrive at irregular intervals
+              group.data.push(faces[0].emotions[name])
+              group.path.attr('d', line)
+
+              if(faces[0].emotions[name] > 60){
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
                 threshold(name);                
               }
 
@@ -399,6 +477,11 @@ $(document).ready(function(){
     }
   });
 
+<<<<<<< HEAD:js/main.js
+=======
+  });
+
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
 
   //Draw the detected facial feature points on the image
   function drawFeaturePoints(img, featurePoints) {
@@ -445,6 +528,10 @@ function threshold(name){
 /*--------------------------------------data REST ------------------------------------------------*/
 function check(){
     //var r = confirm("Do you confirm your answer? REMIND: it will redirect to the result page!");
+<<<<<<< HEAD:js/main.js
+=======
+
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
     /*if(r == true){
       alert("Thank you for your participation!");
     }*/
@@ -463,6 +550,10 @@ function check(){
     document.forms["questionaire"]["nvalence"].value = nvalence;
     document.forms["questionaire"]["data"].value = memory;
     document.forms["questionaire"]["vid"].value = getParameterByName("vid");
+<<<<<<< HEAD:js/main.js
+=======
+
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
     document.getElementById("submit").disabled = false;
     document.getElementById("submit").style.color = "rgb(0,0,0)";
 }
@@ -540,6 +631,7 @@ function changeBorderColor(playerStatus) {
 
 function onPlayerStateChange(event) {
 	 changeBorderColor(event.data);
+<<<<<<< HEAD:js/main.js
 }
 
 function Player_play(){
@@ -547,6 +639,15 @@ function Player_play(){
   player.playVideo();
 }
 
+=======
+}
+
+function Player_play(){
+  $(".demo-message").hide();
+  player.playVideo();
+}
+
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:main23.js
 
 /*-----------------------------------d3-----------------------------------------------*/
 

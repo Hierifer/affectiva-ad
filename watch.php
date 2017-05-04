@@ -4,7 +4,11 @@
   if($_SESSION["user"]){
     $username = $_SESSION["user"];
   } else{
+<<<<<<< HEAD
     header('Location: index.html?err=not_login');      
+=======
+    header('Location: /dashboard/new/signin.html?err=not_login');      
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
   }
 ?>
 <html>
@@ -23,9 +27,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <script src="https://download.affectiva.com/js/3.2/affdex.js"></script>
+<<<<<<< HEAD
   <script src="js/main23.js"></script>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3.v3.min.js"></script>
+=======
+  <script src="js/main.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
 </head>
 
 <body class="container" style="background-color: #111111" onresize="resize()">

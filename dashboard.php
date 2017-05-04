@@ -5,11 +5,19 @@
       if($_POST["user"] != ""){
         $_SESSION["user"] = $_POST["user"];
       } else {
+<<<<<<< HEAD
         header('Location: index.html?err=invalid_username');
       }
   } else{
     if(!isset($_SESSION["user"])){
       header('Location: index.html?err=not_login');
+=======
+        header('Location: /dashboard/new/signin.html?err=invalid_username');
+      }
+  } else{
+    if(!isset($_SESSION["user"])){
+      header('Location: /dashboard/new/signin.html?err=not_login');
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2
     }      
   }
 

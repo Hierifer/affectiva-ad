@@ -6,7 +6,11 @@
   if($_SESSION["user"]){
     $username = $_SESSION["user"];
   } else{
+<<<<<<< HEAD:donut.php
     header('Location: index.html?err=not_login');      
+=======
+    header('Location: /dashboard/new/signin.html?err=not_login');      
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:donut.php
   }
 
   $vid = $_GET["vid"];
@@ -63,8 +67,13 @@
   $engage_rate = $engagement/$total*100;
   $distract_rate = $distract/$total*100;
 
+<<<<<<< HEAD:donut.php
   $pval_rate = $pvalence/($pvalence + $nvalence)*100; 
   $nval_rate = $nvalence/($pvalence + $nvalence)*100;
+=======
+  $pval_rate = $pvalence/$total*100; 
+  $nval_rate = $nvalence/$total*100;
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:donut.php
 
   $joy_rate = $joy/($total-$nonemotion)*100;
   $sad_rate = $sad/($total-$nonemotion)*100;
@@ -204,7 +213,11 @@ datasetOption1 = [
 
 datasetOption2 = [
     {label:"P. Valence", value:Math.round(<?php echo $pval_rate?>)}, 
+<<<<<<< HEAD:donut.php
     {label:"N. Valence", value:Math.round(<?php echo $nval_rate?>)},
+=======
+    {label:"N. Valence", value:Math.round(<?php echo $nval_rate?>)}, 
+>>>>>>> 471d6db178fc90743ae30dda3a66654f65dc88c2:donut.php
     ];
 
 datasetOption3 = [
