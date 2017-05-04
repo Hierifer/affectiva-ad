@@ -1,13 +1,12 @@
 <?php
+	session_start();
 
-/*----------------------------Session-----------------------------------------*/
-  session_start();
-
-  if(isset($_SESSION["user"])){
-  	$username = $_SESSION["user"];
-  } else{
-    header('Location: signin.html?err=not_login');      
-  }
+	/*check session status*/
+	if(isset($_SESSION["user"])){
+		$username = $_SESSION["user"];
+	} else{
+		header('Location: signin.html?err=not_login');      
+	}
 
 /*----------------------------Variable-----------------------------------------*/
 	if(isset($_POST["count"])){
@@ -29,6 +28,7 @@
 		$q1 = $_POST["like"];
 		$q2 = $_POST["buy"];
 		$q3 = $_POST["emotion"];
+
 /*------------------------------write on file--------------------------------------------------------*/
 
 		$myfile = fopen("userdata/".$username."_".$vid.".tsv", "w") or die("Unable to open file!");
@@ -95,7 +95,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<link rel="shortcut icon" type="image/x-icon" href="src/icon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="css/test2.css" rel="stylesheet" type="text/css" />
+	<link href="css/test.css" rel="stylesheet" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -191,22 +191,22 @@ $(document).ready(function(){
 </html>
 
 <script>
-function getParameterByName(name) {
-    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-}
-var vid = getParameterByName("vid");
-var vidpool = ["DVdZ9KjQvIA","aHdrFLai5c4","d2J2qdOrW44","Sp572udnPVg","K9vFWA1rnWc","3bdm4NBYxII"];
-var index = vidpool.indexOf(vid);
-if(index > -1){
-	var titlepool = ["Funny Thai Commercial (Eng Sub)","Doritos \"Finger Cleaner\" Super Bowl commercial 2014 ","Removing a plastic straw from a sea turtle's nostril - Short Version","Marine Pollution","\"Unsung Hero\" (Official HD) : TVC Thai Life Insurance 2014 : ","\"My dad's story\": Dream for My Child | MetLife"];
-	var publishpool = ["Published on Jun 16, 2016","Published on Feb 1, 2014","Published on Aug 12, 2015","Published on Jun 16, 2014","Published on Apr 3, 2014","Published on Jan 27, 2015"];
-	var descpool=["Funniest Thai Commercial with English subs.","Doritos Crash the Super Bowl competition screens at the 2014 Super Bowl!<br>PLEASE LIKE, SUBSCRIBE AND SHARE! CHECK OUT MY OTHER SUPER BOWL 2014 COMMERCIALS!","While on a research project in Costa Rica, Nathan J. Robinson removed a 10 cm (4 in) plastic straw that was entirely embedded into the nostril of an olive ridley sea turtle. Lamentably, this is a consequence of the world of single-use, non-biodegradable plastic that we currently live in.<br>There is a solution and it lies in our own decisions. Please say no to all single-use plastic. Every plastic straw, plastic bag, or plastic bottle that ends up in the oceans could mean the difference between life or death for any number of marine animals.","The ocean covers almost three quarters of our planet. Populations in coastal regions are growing and placing increasing pressure on coastal and marine ecosystems. Marine pollution of many kinds threatens the health of the ocean and its living resources. While the past decades have seen efforts at the local, national, and international levels to address the problems of marine pollution, more needs to be done. Learn more about marine pollution at www.state.gov/ourocean.","The ocean covers almost three quarters of our planet. Populations in coastal regions are growing and placing increasing pressure on coastal and marine ecosystems. Marine pollution of many kinds threatens the health of the ocean and its living resources. While the past decades have seen efforts at the local, national, and international levels to address the problems of marine pollution, more needs to be done. Learn more about marine pollution at www.state.gov/ourocean.","No Description Provided by the official","MetLife values the dream of every parent to give their children a good education to pursue a better life. We understand every sacrifice you make for your children’s future."];
+	function getParameterByName(name) {
+	    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+	    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+	}
+	var vid = getParameterByName("vid");
+	var vidpool = ["DVdZ9KjQvIA","aHdrFLai5c4","d2J2qdOrW44","Sp572udnPVg","K9vFWA1rnWc","3bdm4NBYxII"];
+	var index = vidpool.indexOf(vid);
+	if(index > -1){
+		var titlepool = ["Funny Thai Commercial (Eng Sub)","Doritos \"Finger Cleaner\" Super Bowl commercial 2014 ","Removing a plastic straw from a sea turtle's nostril - Short Version","Marine Pollution","\"Unsung Hero\" (Official HD) : TVC Thai Life Insurance 2014 : ","\"My dad's story\": Dream for My Child | MetLife"];
+		var publishpool = ["Published on Jun 16, 2016","Published on Feb 1, 2014","Published on Aug 12, 2015","Published on Jun 16, 2014","Published on Apr 3, 2014","Published on Jan 27, 2015"];
+		var descpool=["Funniest Thai Commercial with English subs.","Doritos Crash the Super Bowl competition screens at the 2014 Super Bowl!<br>PLEASE LIKE, SUBSCRIBE AND SHARE! CHECK OUT MY OTHER SUPER BOWL 2014 COMMERCIALS!","While on a research project in Costa Rica, Nathan J. Robinson removed a 10 cm (4 in) plastic straw that was entirely embedded into the nostril of an olive ridley sea turtle. Lamentably, this is a consequence of the world of single-use, non-biodegradable plastic that we currently live in.<br>There is a solution and it lies in our own decisions. Please say no to all single-use plastic. Every plastic straw, plastic bag, or plastic bottle that ends up in the oceans could mean the difference between life or death for any number of marine animals.","The ocean covers almost three quarters of our planet. Populations in coastal regions are growing and placing increasing pressure on coastal and marine ecosystems. Marine pollution of many kinds threatens the health of the ocean and its living resources. While the past decades have seen efforts at the local, national, and international levels to address the problems of marine pollution, more needs to be done. Learn more about marine pollution at www.state.gov/ourocean.","The ocean covers almost three quarters of our planet. Populations in coastal regions are growing and placing increasing pressure on coastal and marine ecosystems. Marine pollution of many kinds threatens the health of the ocean and its living resources. While the past decades have seen efforts at the local, national, and international levels to address the problems of marine pollution, more needs to be done. Learn more about marine pollution at www.state.gov/ourocean.","No Description Provided by the official","MetLife values the dream of every parent to give their children a good education to pursue a better life. We understand every sacrifice you make for your children’s future."];
 
-	document.getElementById("title").innerHTML = titlepool[index];
-	document.getElementById("publish").innerHTML = publishpool[index];
-	document.getElementById("description").innerHTML = descpool[index];
-} else {
-	alert("Error on vid");
-}
+		document.getElementById("title").innerHTML = titlepool[index];
+		document.getElementById("publish").innerHTML = publishpool[index];
+		document.getElementById("description").innerHTML = descpool[index];
+	} else {
+		alert("Error on vid");
+	}
 </script>

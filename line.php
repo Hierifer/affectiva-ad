@@ -1,7 +1,8 @@
+<!-- D3 part contribute by DStruths -->
 <?php
-/*----------------------------Session-----------------------------------------*/
   session_start();
 
+  //check login status
   if($_SESSION["user"]){
     $username = $_SESSION["user"];
   } else{

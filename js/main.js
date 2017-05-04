@@ -63,6 +63,9 @@ function displaylike(){
 
 }
 
+/*
+  survey events
+*/
 function displaybuy(){
 	var input = document.getElementById("rangebuy").value;
 	if (input == 0){
@@ -82,6 +85,9 @@ function displaybuy(){
 	}
 }
 
+/*
+  survey events
+*/
 function displayemo(){
 	var input = document.getElementById("rangeemo").value;
 	if (input == 0){
@@ -154,7 +160,8 @@ $(document).ready(function(){
 
 	var player;
   document.getElementById("yplayer").src = "https://www.youtube.com/embed/"+getParameterByName("vid")+"?enablejsapi=1";
-/*----d3 init ----*/
+
+  /*----d3 init ----*/
 	var limit = 60 * 1,
         duration = 750,
         now = new Date(Date.now() - duration)
@@ -296,7 +303,7 @@ $(document).ready(function(){
 
   //Add a callback to notify when camera access is denied
   detector.addEventListener("onWebcamConnectFailure", function() {
-    show_message("msg-webcam-failure");
+    show_message("msg-starting-webcam");
   });
 
   //Add a callback to notify when detector is stopped
@@ -417,7 +424,9 @@ $(document).ready(function(){
 
   	}
   }
+
 	onStart();
+
 });
 
 function threshold(name){
@@ -440,15 +449,10 @@ function threshold(name){
   }
 }
 
-
-
-/*--------------------------------------data REST ------------------------------------------------*/
+/*
+  fill counts on form
+*/
 function check(){
-    //var r = confirm("Do you confirm your answer? REMIND: it will redirect to the result page!");
-    /*if(r == true){
-      alert("Thank you for your participation!");
-    }*/
-    //var memory =  document.getElementById("memory").innerHTML;
     alert(memory);
     document.forms["questionaire"]["joy"].value = joy;
     document.forms["questionaire"]["sad"].value = sad;
@@ -548,8 +552,6 @@ function Player_play(){
 }
 
 
-/*-----------------------------------d3-----------------------------------------------*/
-
 var create_alert = function(id, text) {
     $("#lightbox").fadeIn(500);
     $("<div></div>", {
@@ -562,11 +564,17 @@ var create_alert = function(id, text) {
     $("#" + id).fadeIn(1000);
 };
 
+/*
+  message showup
+*/
 var show_message = function(id) {
     $(".demo-message").hide();
     $(document.getElementById(id)).fadeIn("fast");
 };
 
+/*
+  message fadeout
+*/
 var fade_and_remove = function(id) {
     $(id).fadeOut(500, function() {
         this.remove();

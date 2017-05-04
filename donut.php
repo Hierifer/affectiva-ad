@@ -1,8 +1,8 @@
+<!--D3 part contribute by juancb-->
 <?php
-
-/*----------------------------Session-----------------------------------------*/
   session_start();
 
+  /*check session status*/
   if($_SESSION["user"]){
     $username = $_SESSION["user"];
   } else{
@@ -11,7 +11,7 @@
 
   $vid = $_GET["vid"];
 
-
+  //database init
   $servername = "127.0.0.1";
   $user = "root";
   $password = "";
@@ -20,7 +20,7 @@
 
   // Create connection
   $conn = new mysqli($servername, $user, $password, $dbname);
-  // Check connection
+
   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
   } 
@@ -56,10 +56,12 @@
   } else if($total == $nonemotion){
     $total += 1;
   }
-$total2 = $pvalence + $nvalence;
-if($total2 == 0){
-	$total2 = 1;
-}
+
+  $total2 = $pvalence + $nvalence;
+
+  if($total2 == 0){
+  	$total2 = 1;
+  }
 
   $emotion_rate = ($total-$nonemotion)/$total*100;
   $nonemo_rate = $nonemotion/$total*100;

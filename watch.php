@@ -1,12 +1,14 @@
 <?php
   session_start();
 
+  //check login status
   if($_SESSION["user"]){
     $username = $_SESSION["user"];
   } else{
     header('Location: index.html?err=not_login');      
   }
 ?>
+
 <html>
 <head>
 	<title>Youtube Video Analysis</title>
@@ -18,12 +20,12 @@
   <link rel="shortcut icon" type="image/x-icon" href="src/icon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap-darkly.min.css">
-	<link rel="stylesheet" href="css/main23.css">
+	<link rel="stylesheet" href="css/main.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <script src="https://download.affectiva.com/js/3.2/affdex.js"></script>
-  <script src="js/main23.js"></script>
+  <script src="js/main.js"></script>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
@@ -86,24 +88,24 @@
   <div class="panel2" id="panel2" style="display: none;">
       <h3> Welcome to Youtube Video Analysis System<h3>
       <h6> Before all, Please Check Your Camera. You can also click top light camera icon to see your Camera</h6>
-       <div class="container-fluid">
-          <div class="row">
-            <div class="camera" id="affdex_elements"></div>
-            <div class="alert-info">
-              <div style="height:25em;">
-                <strong>EMOTION TRACKING RESULTS</strong>
-                <div id="results" style="word-wrap:break-word;"></div>
-              </div>
-              <div>
-                <strong>DETECTOR LOG MSGS</strong>
-              </div>
-              <div id="logs"></div>
-              <button id="start" onclick="onStart()">Start</button>
-              <button id="stop" onclick="onStop()">Stop</button>
-              <button id="reset" onclick="onReset()">Reset</button>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="camera" id="affdex_elements"></div>
+          <div class="alert-info">
+            <div style="height:25em;">
+              <strong>EMOTION TRACKING RESULTS</strong>
+              <div id="results" style="word-wrap:break-word;"></div>
             </div>
+            <div>
+              <strong>DETECTOR LOG MSGS</strong>
+            </div>
+            <div id="logs"></div>
+            <button id="start" onclick="onStart()">Start</button>
+            <button id="stop" onclick="onStop()">Stop</button>
+            <button id="reset" onclick="onReset()">Reset</button>
           </div>
         </div>
+      </div>
   </div>
 
   <div id="demo-setup">
@@ -133,34 +135,34 @@
   </div>
 
 	<div class="row" id="video-container">
-	    <div class="col-md-12 text-center">
-        <div class="embed-responsive embed-responsive-16by9">
-           <iframe id="yplayer" class="embed-responsive-item" type="text/html"
-          src="https://www.youtube.com/embed/wJxNhJ8fjFk?enablejsapi=1"
-          frameborder="0"
-          style="border: solid 4px #37474F"
-          ></iframe>       
-        </div>
-        <div id="svg-container">
-            <div id="ul-wrapper" class="col-md-10">
-              <div class="graph"></div>
-            </div>
-            <div class="row">
-                <div id="ul-wrapper" class="col-md-2">
-                    <ul id="nav" style="list-style-type: none;">
-                    <li class="joy buttons smiling-face joy-box box-squared" id="joy" onClick="JSSDKDemo.responses(this.id)"><span>Joy</span></li>
-                    <li class="sadness buttons sad-face sad-box box-squared" id="all"><span>Sadness</span></li>
-                    <li class="disgust buttons disgusted-face disgust-box box-squared" id="disgust"  onClick="JSSDKDemo.responses(this.id)"><span>Disgust</span></li>
-                    <li class="contempt buttons contempt-face contempt-box box-squared" id="contempt"  onClick="JSSDKDemo.responses(this.id)"><span>Contempt</span></li>
-                    <li class="anger buttons angry-face anger-box box-squared" id="anger" onClick="JSSDKDemo.responses(this.id)"><span>Anger</span></li>
-                    <li class="fear buttons fear-face fear-box box-squared" id="all"><span>Fear</span></li>
-                    <li class="surprise buttons surprise-face surprise-box box-squared" id="surprise"  onClick="JSSDKDemo.responses(this.id)"><span>Surprise</span></li>
-                    </ul>
-                </div>
-                <div id="count"></div>
-            </div>
-        </div>
-	    </div>
+    <div class="col-md-12 text-center">
+      <div class="embed-responsive embed-responsive-16by9">
+         <iframe id="yplayer" class="embed-responsive-item" type="text/html"
+        src="https://www.youtube.com/embed/wJxNhJ8fjFk?enablejsapi=1"
+        frameborder="0"
+        style="border: solid 4px #37474F"
+        ></iframe>       
+      </div>
+      <div id="svg-container">
+          <div id="ul-wrapper" class="col-md-10">
+            <div class="graph"></div>
+          </div>
+          <div class="row">
+              <div id="ul-wrapper" class="col-md-2">
+                  <ul id="nav" style="list-style-type: none;">
+                  <li class="joy buttons smiling-face joy-box box-squared" id="joy" onClick="JSSDKDemo.responses(this.id)"><span>Joy</span></li>
+                  <li class="sadness buttons sad-face sad-box box-squared" id="all"><span>Sadness</span></li>
+                  <li class="disgust buttons disgusted-face disgust-box box-squared" id="disgust"  onClick="JSSDKDemo.responses(this.id)"><span>Disgust</span></li>
+                  <li class="contempt buttons contempt-face contempt-box box-squared" id="contempt"  onClick="JSSDKDemo.responses(this.id)"><span>Contempt</span></li>
+                  <li class="anger buttons angry-face anger-box box-squared" id="anger" onClick="JSSDKDemo.responses(this.id)"><span>Anger</span></li>
+                  <li class="fear buttons fear-face fear-box box-squared" id="all"><span>Fear</span></li>
+                  <li class="surprise buttons surprise-face surprise-box box-squared" id="surprise"  onClick="JSSDKDemo.responses(this.id)"><span>Surprise</span></li>
+                  </ul>
+              </div>
+              <div id="count"></div>
+          </div>
+      </div>
+    </div>
 	</div>
 </body>
 </html>

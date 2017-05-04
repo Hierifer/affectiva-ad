@@ -1,6 +1,7 @@
 <?php
   session_start();
 
+  //check login status
   if(isset($_POST["user"])){
       if($_POST["user"] != ""){
         $_SESSION["user"] = $_POST["user"];
@@ -15,6 +16,7 @@
 
   $graded = array();
 
+  //database init
   $servername = "127.0.0.1";
   $user = "root";
   $password = "";
