@@ -137,7 +137,7 @@ $(document).ready(function(){
 		<br>
 		<h6 id="publish"></h6>
 		<p id="description"></p>
-		<a href="/dashboard/new/dashboard.php">Go to Dashboard</a>
+		<a href="dashboard.php">Go to Dashboard</a>
 	</div>
 	</div>
 	<iframe src=<?php echo $line_url; ?> height="510" width="1000" style="border:none;display:block; margin:auto;"></iframe>
