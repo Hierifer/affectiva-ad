@@ -13,13 +13,12 @@
 <head>
 	<title>Youtube Video Analysis</title>
 	<meta charset="UTF-8">
-  	<meta name="description" content = "Youtube Analysis powered by Affectiva">
- 	<meta name="keywords" content ="Youtube，Affect Computing, Affectiva">
-  	<meta name="author" content ="BF8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<link rel="shortcut icon" type="image/x-icon" href="src/icon.png">
+  <meta name="description" content = "Youtube Analysis powered by Affectiva">
+  <meta name="keywords" content ="Youtube，Affect Computing, Affectiva">
+  <meta name="author" content ="BF8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="src/icon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<<<<<<< HEAD
   <link rel="stylesheet" href="css/bootstrap-darkly.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -27,31 +26,22 @@
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <script src="https://download.affectiva.com/js/3.2/affdex.js"></script>
   <script src="js/main.js"></script>
-=======
- 	<link rel="stylesheet" href="css/bootstrap-darkly.min.css">
-	<link rel="stylesheet" href="css/main23.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-  	<script src="https://download.affectiva.com/js/3.2/affdex.js"></script>
-  	<script src="js/main23.js"></script>
->>>>>>> dfe706c100d8eb404e9229045ccf2f6ef0254bdb
 	<script src="https://d3js.org/d3.v4.min.js"></script>
-  	<script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 
 <body class="container" style="background-color: #111111" onresize="resize()">
- 	<div id="text-width"></div>
- 	<div id="lightbox"></div>
+  <div id="text-width"></div>
+  <div id="lightbox"></div>
 	<img id="light" style="position: absolute; top: 3px; right: 3px; border: 0;" src="src/light.png" alt="light" title = "Open Light" width="50" height="50" onclick="openlight()">
 	<div class="message"></div>
 
 
-  	<button type="button" id= "flip" class="btn btn-primary filp"><span id="grade">Survey It</span></button>
-  	<div class="panel" id="panel">
-      	<h3> Thanks You for Participate this Survey! </h3>
-      	<p>There are three Questions for you to answer</p>
-      	<hr>
+  <button type="button" id= "flip" class="btn btn-primary filp"><span id="grade">Survey It</span></button>
+  <div class="panel" id="panel">
+      <h3> Thanks You for Participate this Survey! </h3>
+      <p>There are three Questions for you to answer</p>
+      <hr>
         <form name="questionaire" action=<?php echo "data.php?vid=".$_GET["vid"];?> method="post">
           <div class="well">
             <div class="grade_entry">
