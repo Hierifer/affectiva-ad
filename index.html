@@ -1,0 +1,116 @@
+<html>
+<head>
+	<title>Sign in</title>
+	<meta charset="UTF-8">
+  <meta name="description" content = "Youtube Analysis powered by Affectiva">
+  <meta name="keywords" content ="Youtube，Affect Computing, Affectiva">
+  <meta name="author" content ="BF8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="src/icon.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <script src="https://download.affectiva.com/js/3.2/affdex.js"></script>
+</head>
+
+
+<style>
+body{
+  background-color: ;
+ 
+}
+.col-md-12 p{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color:#EEEEEE;
+  font-size: 40px;
+}
+#submit{
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:rgb(0, 0, 148);
+  width:80px;
+  height:40px;
+  color:white;
+  margin-top:15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color:rgb(0, 0, 148);
+  border-radius: 5px;
+}
+
+#submit:hover{
+  font-weight: bold;
+  background-color: rgb(0, 223, 255);
+}
+
+.courtesy p{
+  position:fixed;
+  bottom:0px;
+  left:5px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color:#DDDDDD;
+  font-size: 14px;
+}
+
+.courtesy img{
+  position:fixed;
+  bottom:0px;
+  right:5px;
+}
+</style>
+
+<body>
+
+
+<div class="col-md-12 text-center">
+  <br><br>
+  <p>Video Analysis System</p>
+  <br><br>
+  <form method="post" action="dashboard.php" style="padding-left: 10%;padding-right: 10%;">
+    <div class="input-group" >
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="user" type="text" title="username" class="form-control" name="user" placeholder="username" style="height:50px;">
+    </div>
+    <br>
+    <input id="submit" title="Submit" type="submit" value="Submit">
+  </form>
+</div>
+
+  <video id="video1" width="100%"  style="position:absolute;left:0px;top:0px;z-index:-10;">
+    <source src="src/Yosemite.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="courtesy">
+    <p>Video Courtesy of ProjectYose</p>
+    <img src="src/affectiva_logo.png" alt="Affectiva" width="300" height="100">
+  </div>
+
+
+</body>
+<script> 
+var myVideo = document.getElementById("video1"); 
+
+function playPause() { 
+    if (myVideo.paused) 
+        myVideo.play(); 
+    else 
+        myVideo.pause(); 
+} 
+
+playPause();
+
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+if (getParameterByName("err") == "not_login"){
+  alert("Session Expired or Not Login");
+} else if (getParameterByName("err") == "invalid_username"){  
+  alert("Invalid Username: name cannot be null");
+}
+</script> 
+</html>
