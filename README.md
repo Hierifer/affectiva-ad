@@ -1,17 +1,17 @@
 # affectiva-ad
-This project combines with Affectiva and D3. It is the tool for studying the customers' behaviors by affective computing. While users watch the advertisement, Affectiva will collect the facial expression data and pass them to D3 for data visualization. Later, researchers can explore the relationship between users facial expression and decisions of consumption.
+This project combines with Affectiva and D3. It is the tool for studying the customers' behaviors by affective computing. While users are watching the advertisement, Affectiva will collect the facial expression data and pass them to D3 for data visualization. Later, researchers can explore the relationship between users facial expression and decisions of consumption.
 
 ## Getting Started
 This web sets up on XAMPP. However, any php server will work for this project. Mysql database is also required for data storing. Thus, please confirm the setup of MySQL database.
 
 ### Prerequisites
-*PHP server software (Recommand to use [XAMPP](https://www.apachefriends.org/index.html). And, this tutorial is using XAMPP)
-*MySQL server software (if you choose to use XAMPP, it will be already for you)
+* PHP server software (Recommand to use [XAMPP](https://www.apachefriends.org/index.html). And, this tutorial is using XAMPP)
+* MySQL server software (if you choose to use XAMPP, it will be already for you)
 
 ### Installing
-Download and install [XAMPP](https://www.apachefriends.org/download.html).
+Download and install [XAMPP] (https://www.apachefriends.org/download.html)
 
-After installed, clone https://github.com/Hierifer/affectiva-ad to your XAMPP folder (E.X folder path "C:\xampp\htdocs\dashboard" for Windows users; under dashboard folder for MAC users).
+Clone https://github.com/Hierifer/affectiva-ad to your XAMPP folder (e.x. folder path "C:\xampp\htdocs\dashboard" for Windows users; under dashboard folder for MAC users)
 
 Setup your MySQL database by starting Apache on XMAPP Control Panel and goto "http://localhost/phpmyadmin".
 
