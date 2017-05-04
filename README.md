@@ -39,13 +39,13 @@ CREATE TABLE video (
 	q3 int(1) NOT NULL   	
 )CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ```
-##Running the demo
+## Running the demo
 
 Making sure both Apache and MySQL are active on XAMPP Control Panel.
 
 Demo will run on "http://localhost/dashboard/affectiva-ad".
 
-##Built With
+## Built With
 * [Affectiva](http://www.affectiva.com/) - Affectiva
 * [D3-Donut](http://bl.ocks.org/juan-cb/1984c7f2b446fffeedde) - Arthor: juancb
 * [D3-Line](http://bl.ocks.org/DStruths/9c042e3a6b66048b5bd4) - Arthor: DStruths
