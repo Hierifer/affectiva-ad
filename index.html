@@ -1,192 +1,116 @@
 <html>
 <head>
-	<title>Youtube Video Analysis</title>
+	<title>Sign in</title>
 	<meta charset="UTF-8">
   <meta name="description" content = "Youtube Analysis powered by Affectiva">
   <meta name="keywords" content ="Youtube，Affect Computing, Affectiva">
   <meta name="author" content ="BF8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" type="image/x-icon" href="icon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="src/icon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="bootstrap-darkly.min.css">
-	<link rel="stylesheet" href="main.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <script src="https://download.affectiva.com/js/3.2/affdex.js"></script>
-  <script src="main.js"></script>
-	<script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 
-<body class="container" style="background-color: #111111" onresize="resize()">
-  <div id="text-width"></div>
-  <div id="lightbox"></div>
-	<img id="light" style="position: absolute; top: 3px; right: 3px; border: 0;" src="light.png" alt="light" title = "Open Light" width="50" height="50" onclick="openlight()">
 
-	<div class="message"></div>
+<style>
+body{
+  background-color: ;
+ 
+}
+.col-md-12 p{
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color:#EEEEEE;
+  font-size: 40px;
+}
+#submit{
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:rgb(0, 0, 148);
+  width:80px;
+  height:40px;
+  color:white;
+  margin-top:15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color:rgb(0, 0, 148);
+  border-radius: 5px;
+}
+
+#submit:hover{
+  font-weight: bold;
+  background-color: rgb(0, 223, 255);
+}
+
+.courtesy p{
+  position:fixed;
+  bottom:0px;
+  left:5px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color:#DDDDDD;
+  font-size: 14px;
+}
+
+.courtesy img{
+  position:fixed;
+  bottom:0px;
+  right:5px;
+}
+</style>
+
+<body>
 
 
-  <button type="button" id= "flip" class="btn btn-primary filp"><span id="grade">Survey It</span></button>
-  <div class="panel" id="panel">
-      <h3> Thanks You for Participate this Survey! </h3>
-      <p>There are three Questions for you to answer</p>
-      <hr>
-        <form>
-          <div class="well">
-            <div class="grade_entry">
-              <label>Would you like this video?</label>
-              <span id="like">Moderate</span>
-            </div>
-            <input type="range" id="rangelike" min="0" max="6" step="1" onChange="displaylike()"></input>
-          </div>
-          <div class="well">
-            <div class="grade_entry">
-              <label>Would you purchase the product in this video? If it is ad</label>
-              <span id="buy">No Sure</span>
-            </div>
-            <input type="range" id="rangebuy" min="0"  max="4" step="1" onChange="displaybuy()"></input>
-          </div>   
-          <div class="well">
-            <div class="grade_entry">
-              <label>Do you agree that this video arouse your emotion?</label>
-              <span id="emotion">No Sure</span>
-            </div>
-            <input type="range" id="rangeemo" min="0"  max="4" step="1" onChange="displayemo()"></input>
-          </div>         
-          <span class="submit"><input id="submit" title="Submit Survey" class="btn btn-success" type="submit" data-inline="true" onClick="submit"></input></span>
-        </form>
-      </div>
+<div class="col-md-12 text-center">
+  <br><br>
+  <p>Video Analysis System</p>
+  <br><br>
+  <form method="post" action="dashboard.php" style="padding-left: 10%;padding-right: 10%;">
+    <div class="input-group" >
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="user" type="text" title="username" class="form-control" name="user" placeholder="username" style="height:50px;">
+    </div>
+    <br>
+    <input id="submit" title="Submit" type="submit" value="Submit">
+  </form>
+</div>
+
+  <video id="video1" width="100%"  style="position:absolute;left:0px;top:0px;z-index:-10;">
+    <source src="src/Yosemite.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="courtesy">
+    <p>Video Courtesy of ProjectYose</p>
+    <img src="src/affectiva_logo.png" alt="Affectiva" width="300" height="100">
   </div>
 
-  <img id="youtube" style="position: absolute; top: 12px; right: 130px; border: 0;" src="youtube.png" alt="light" title = "Open Camera View" width="40" height="40">
-  <div class="panel3" id="panel3">
-          <div class="col-md-8 col-md-offset-2" id="instructions">
-              <div class="well">
-                  <p><strong>Welcome!</strong></p>
-                  <p>This demo uses Affectiva's JavaScript SDK to analyze your emotions as you watch a YouTube video. Before starting this demo, please make sure that your face is centered in the screen and the room lighting is adequate.</p>
-                  <p><strong>Instructions:</strong></p>
-                  <p>Search a YouTube video by keyword or enter its URL, and with your webcam turned on, you'll be able to see your emotions both during the video and during playback:</p>
-                  
-                  <div class="form-group">
-                      <div class="input-group">
-                          <input type="text" class="form-control" id="start-form" placeholder="Enter a URL or search YouTube here..." autofocus>
-                          <span class="input-group-btn">
-                              <button id="btn-start" class="btn btn-primary" type="button">Start</button>
-                          </span>
-                      </div>
-                  </div>
-              </div>
 
-              <div class="list-group row" id="search-results"></div>
-
-              <div class="well">
-                  <p>Here are some selected videos to get you started:</p>
-                  <div class="row">
-                      <div class="col-md-4 starter-container" id="example-0"></div>
-                      <div class="col-md-4 starter-container" id="example-1"></div>
-                      <div class="col-md-4 starter-container" id="example-2"></div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-4 starter-container" id="example-3"></div>
-                      <div class="col-md-4 starter-container" id="example-4"></div>
-                      <div class="col-md-4 starter-container" id="example-5"></div>
-                  </div>
-              </div>
-          </div>
-  </div>
-
-  <img id="camera" style="position: absolute; top: 10px; right: 65px; border: 0;" src="camera_o.png" alt="light" title = "Open Camera View" width="40" height="40">
-  <div class="panel2" id="panel2" style="display: none;">
-      <h3> Welcome to Youtube Video Analysis System<h3>
-      <h6> Before all, Please Check Your Camera. You can also click top light camera icon to see your Camera</h6>
-       <div class="container-fluid">
-          <div class="row">
-            <div class="camera" id="affdex_elements"></div>
-            <div class="alert-info">
-              <div style="height:25em;">
-                <strong>EMOTION TRACKING RESULTS</strong>
-                <div id="results" style="word-wrap:break-word;"></div>
-              </div>
-              <div>
-                <strong>DETECTOR LOG MSGS</strong>
-              </div>
-              <div id="logs"></div>
-              <button id="start" onclick="onStart()">Start</button>
-              <button id="stop" onclick="onStop()">Stop</button>
-              <button id="reset" onclick="onReset()">Reset</button>
-            </div>
-          </div>
-        </div>
-  </div>
-
-  <div id="demo-setup">
-    <div id="messages" class="row">
-          <div class="col-md-6 col-md-offset-3 demo-message" id="msg-starting-webcam">
-              <div class="alert alert-info" role="alert">Connecting to webcam...</div>
-          </div>
-          <div class="col-md-6 col-md-offset-3 demo-message" id="msg-webcam-failure">
-              <div class="alert alert-danger" role="alert"><strong>Error: </strong>Failed to connect to webcam.</div>
-          </div>
-          <div class="col-md-6 col-md-offset-3 demo-message" id="msg-detector-status">
-              <div class="alert alert-info" role="alert">Loading and starting the emotions detector, this may take few minutes ...</div>
-          </div>
-          <div class="col-md-6 col-md-offset-3 demo-message" id="msg-bad-url">
-              <div class="alert alert-warning" role="alert"><strong>Error: </strong>Please enter a valid YouTube URL or search phrase.</div>
-          </div>
-          <div class="col-md-6 col-md-offset-3 demo-message" id="msg-short-video">
-              <div class="alert alert-warning" role="alert"><strong>Error: </strong>That YouTube video is too short.</div>
-          </div>
-          <div class="col-md-6 col-md-offset-3 demo-message" id="msg-webcam-stop">
-              <div class="alert alert-info" role="alert">Webcam stopped.</div>
-          </div>
-      </div>
-  </div>
-
-	<div class="row" id="video-container">
-	    <div class="col-md-12 text-center">
-        <div class="embed-responsive embed-responsive-4by3">
-          <iframe id="existing-iframe-example" class="embed-responsive-item" type="text/html"
-          src="https://www.youtube.com/embed/d2J2qdOrW44?enablejsapi=1"
-          frameborder="0"
-          style="border: solid 4px #37474F"
-          ></iframe>
-        </div>         
-
-        <div id="svg-container">
-            <div id="ul-wrapper" class="col-md-10">
-              <div class="graph"></div>
-            </div>
-            <div class="row">
-                <div id="ul-wrapper" class="col-md-2">
-                    <ul id="nav" style="list-style-type: none;">
-                    <li class="joy buttons smiling-face joy-box box-squared" id="joy" onClick="JSSDKDemo.responses(this.id)"><span>Joy</span></li>
-                    <li class="sadness buttons sad-face sad-box box-squared" id="all"><span>Sadness</span></li>
-                    <li class="fear buttons fear-face fear-box box-squared" id="all"><span>Fear</span></li>
-                    <li class="anger buttons angry-face anger-box box-squared" id="anger" onClick="JSSDKDemo.responses(this.id)"><span>Anger</span></li>
-                    <li class="disgust buttons disgusted-face disgust-box box-squared" id="disgust"  onClick="JSSDKDemo.responses(this.id)"><span>Disgust</span></li>
-                    <li class="contempt buttons contempt-face contempt-box box-squared" id="contempt"  onClick="JSSDKDemo.responses(this.id)"><span>Contempt</span></li>
-                    <li class="surprise buttons surprise-face surprise-box box-squared" id="surprise"  onClick="JSSDKDemo.responses(this.id)"><span>Surprise</span></li>
-                    </ul>
-                </div>
-                <!--
-                <div id="svg-wrapper" class="col-md-8 text-center">
-                    <svg id="svg-curve"></svg>
-                </div>
-
-                <div id="play-again" class="col-md-2">
-                  <div class="well">
-                    <p>Frame capture complete!</p>
-                    <p><small>Watch the video synchronized with your emotions.</small></p>
-                    <p>&nbsp;</p>
-                    <button id="btn-play-again" class="btn btn-primary">Ok, got it</button>
-                  </div>
-                </div>
-                <div id="memory"><div>
-                -->
-            </div>
-        </div>
-	    </div>
-	</div>
 </body>
+<script> 
+var myVideo = document.getElementById("video1"); 
+
+function playPause() { 
+    if (myVideo.paused) 
+        myVideo.play(); 
+    else 
+        myVideo.pause(); 
+} 
+
+playPause();
+
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+if (getParameterByName("err") == "not_login"){
+  alert("Session Expired or Not Login");
+} else if (getParameterByName("err") == "invalid_username"){  
+  alert("Invalid Username: name cannot be null");
+}
+</script> 
 </html>
