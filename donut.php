@@ -58,7 +58,7 @@
   }
 $total2 = $pvalence + $nvalence;
 if($total2 == 0){
-	$tpta;2 = 1;
+	$total2 = 1;
 }
 
   $emotion_rate = ($total-$nonemotion)/$total*100;
@@ -67,8 +67,8 @@ if($total2 == 0){
   $engage_rate = $engagement/$total*100;
   $distract_rate = $distract/$total*100;
 
-  $pval_rate = $pvalence/($pvalence + $nvalence)*100; 
-  $nval_rate = $nvalence/($pvalence + $nvalence)*100;
+  $pval_rate = $pvalence/$total2*100; 
+  $nval_rate = $nvalence/$total2*100;
 
   $joy_rate = $joy/($total-$nonemotion)*100;
   $sad_rate = $sad/($total-$nonemotion)*100;
