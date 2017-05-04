@@ -56,6 +56,10 @@
   } else if($total == $nonemotion){
     $total += 1;
   }
+$total2 = $pvalence + $nvalence;
+if($total2 == 0){
+	$tpta;2 = 1;
+}
 
   $emotion_rate = ($total-$nonemotion)/$total*100;
   $nonemo_rate = $nonemotion/$total*100;
