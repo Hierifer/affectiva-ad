@@ -1,6 +1,13 @@
 <?php
   session_start();
 
+  //check return err
+  if(isset($_GET["err"])){
+    if($_GET["err"] == "noemotion"){
+      echo "<script>alert(\"no emotion is recorded\")</script>";
+    }
+  }
+
   //check login status
   if(isset($_POST["user"])){
       if($_POST["user"] != ""){

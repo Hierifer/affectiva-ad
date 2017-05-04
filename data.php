@@ -29,10 +29,13 @@
 		$q2 = $_POST["buy"];
 		$q3 = $_POST["emotion"];
 
+		if($total == 0){
+			header('Location: dashboard.php?err=noemotion');   
+		}
+
 /*------------------------------write on file--------------------------------------------------------*/
 
 		$myfile = fopen("userdata/".$username."_".$vid.".tsv", "w") or die("Unable to open file!");
-		//echo $username."_".$vid.".tsv";
 		$list = explode(",", $data);
 		$txt = "date	Joy	Sadness	Disgust	 Contempt	 Anger	 Fear	 Surprise\n";
 		fwrite($myfile, $txt);
@@ -155,19 +158,23 @@ $(document).ready(function(){
 	<div id ="collage" style="display:block;">
 	<?php
 	function pick_color($data){
-		$red = 40+2*(ceil($data[1])+ceil($data[5])+ceil($data[7]));
-		$green = 40+2*(ceil($data[2])+ceil($data[3])+ceil($data[4])+ceil($data[7]));
-		$blue = 40+2*(ceil($data[2])+ceil($data[5])+ceil($data[6]));
-		if($red > 255){
-			$red = 255;
+		if($data[1] != "date"){
+			$red = 40+2*(ceil($data[1])+ceil($data[5])+ceil($data[7]));
+			$green = 40+2*(ceil($data[2])+ceil($data[3])+ceil($data[4])+ceil($data[7]));
+			$blue = 40+2*(ceil($data[2])+ceil($data[5])+ceil($data[6]));
+			if($red > 255){
+				$red = 255;
+			}
+			if($green > 255){
+				$green = 255;
+			}
+			if($blue > 255){
+				$blue = 255;
+			}
+			$res = "rgb(".$red.",".$green.",".$blue.")";
+		} else {
+			$res = $data[1];
 		}
-		if($green > 255){
-			$green = 255;
-		}
-		if($blue > 255){
-			$blue = 255;
-		}
-		$res = "rgb(".$red.",".$green.",".$blue.")";
 		return $res;
 	}
 
@@ -177,7 +184,7 @@ $(document).ready(function(){
 	    while (($line = fgets($handle)) !== false) {
 	        $data = explode("\t", $line);
 	        $current = pick_color($data);
-	        if($data[0] != "date"){
+	        if($current != "date"){
 	        	echo "<div style=\"background: linear-gradient(to right,".$prev." , ".$current.");width:20px;height:20px;border-radius: 3px;display:inline-block;\"></div>";
 	        }
 	        $prev = $current;
