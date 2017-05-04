@@ -5,7 +5,7 @@ This project combines with Affectiva and D3. It is the tool for studying the cus
 This web sets up on XAMPP. However, any php server will work for this project. Mysql database is also required for data storing. Thus, please confirm the setup of MySQL database.
 
 ### Prerequisites
-* PHP server software (Recommand to use [XAMPP](https://www.apachefriends.org/index.html). And, this tutorial is using XAMPP)
+* PHP server software (recommand to use [XAMPP](https://www.apachefriends.org/index.html). And, this tutorial is using XAMPP)
 * MySQL server software (if you choose to use XAMPP, it will be already for you)
 
 ### Installing
