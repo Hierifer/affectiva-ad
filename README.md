@@ -9,9 +9,9 @@ This web sets up on XAMPP. However, any php server will work for this project. M
 * MySQL server software (if you choose to use XAMPP, it will be already for you)
 
 ### Installing
-Download and install [XAMPP](https://www.apachefriends.org/download.html)
+Download and install [XAMPP](https://www.apachefriends.org/download.html).
 
-Clone https://github.com/Hierifer/affectiva-ad to your XAMPP folder (e.x. folder path "C:\xampp\htdocs\dashboard" for Windows users; under dashboard folder for MAC users)
+Clone https://github.com/Hierifer/affectiva-ad to your XAMPP folder (e.x. folder path "C:\xampp\htdocs\dashboard" for Windows users; under dashboard folder for MAC users).
 
 Setup your MySQL database by starting Apache on XMAPP Control Panel and goto "http://localhost/phpmyadmin".
 
