@@ -55,5 +55,6 @@ Demo will run on "http://localhost/dashboard/affectiva-ad".
 * **Teng Hu** - *Initial work* - Email: thu4@dons.usfca.edu
 
 ## Acknowledgments
-* Affectiva
-* Jeremiad Raymond
+* Jenny Chi	--- pilot study
+* Jeremiad Raymond	--- D3 Consultant
+
